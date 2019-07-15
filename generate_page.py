@@ -13,12 +13,11 @@ def get_url(image_name):
 
     url_params = {
         "ax": "Linkover",
-        "pd": "239612743668341078",
+        "pd": "168818644649310760", # product id
         "ed": "true",
         "ic": "",
         "tc": "",
-        "coverimage": _image_url,
-        "covertext": "test"
+        "image1": _image_url
     }
 
     _query_url = \
