@@ -41,7 +41,20 @@ with doc:
             li(a(i.title(), href='/%s.html' % i))
 
     with div(id="images"):
+
         for i in glob.glob("images/*iteration_9.png"):
+            query_url, image_url = get_url(i.replace("\\", "/"))
+
+            with a(href=query_url, target="_blank"):
+                img(src=image_url)
+
+        for i in glob.glob("images/*iteration_6.png"):
+            query_url, image_url = get_url(i.replace("\\", "/"))
+
+            with a(href=query_url, target="_blank"):
+                img(src=image_url)
+
+        for i in glob.glob("images/*iteration_3.png"):
             query_url, image_url = get_url(i.replace("\\", "/"))
 
             with a(href=query_url, target="_blank"):
