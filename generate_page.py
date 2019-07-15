@@ -2,27 +2,31 @@ import dominate
 from dominate.tags import *
 
 from urllib import parse
+import glob
 
-base_url = "https://www.zazzle.com/api/create/"
-store_id = "at-238377813278186853"
 
-image_url = "https://raw.githubusercontent.com/TheRobotCarlson/styled-images/master/test1_at_iteration_9.png"
 
-url_params = {
-    "ax": "Linkover",
-    "pd": "239612743668341078",
-    "ed": "true",
-    "ic": "",
-    "t_image1_iid": image_url
-}
+def get_url(image_name):
+    base_url = "https://www.zazzle.com/api/create/"
+    store_id = "at-238377813278186853"
 
-query_url = \
-    base_url + \
-    store_id + \
-    "?" + \
-    parse.urlencode(url_params)
+    image_url = "https://raw.githubusercontent.com/TheRobotCarlson/styled-images/master/" + image_name
 
-print(query_url)
+    url_params = {
+        "ax": "Linkover",
+        "pd": "239612743668341078",
+        "ed": "true",
+        "ic": "",
+        "t_image1_iid": image_url
+    }
+
+    query_url = \
+        base_url + \
+        store_id + \
+        "?" + \
+        parse.urlencode(url_params)
+
+    return query_url, image_url
 
 doc = dominate.document(title='Jump to page')
 
@@ -34,8 +38,14 @@ with doc:
     with div(id='header').add(ol()):
         for i in ['home', 'about', 'contact']:
             li(a(i.title(), href='/%s.html' % i))
-    with a(href = query_url):
-        img(src=image_url)
+
+    with div(id="images"):
+        for i in glob.glob("*.png"):
+            query_url, image_url = get_url(i)
+
+            with a(href=query_url, target="_blank"):
+                img(src=image_url)
+
     with div():
         attr(cls='body')
         p('Lorem ipsum..')
