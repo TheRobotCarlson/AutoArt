@@ -5,28 +5,30 @@ from urllib import parse
 import glob
 
 
-
 def get_url(image_name):
     base_url = "https://www.zazzle.com/api/create/"
     store_id = "at-238377813278186853"
 
-    image_url = "https://raw.githubusercontent.com/TheRobotCarlson/styled-images/master/" + image_name
+    _image_url = "https://raw.githubusercontent.com/TheRobotCarlson/styled-images/master/" + image_name
 
     url_params = {
         "ax": "Linkover",
         "pd": "239612743668341078",
         "ed": "true",
         "ic": "",
-        "t_image1_iid": image_url
+        "tc": "",
+        "coverimage": _image_url,
+        "covertext": "test"
     }
 
-    query_url = \
+    _query_url = \
         base_url + \
         store_id + \
         "?" + \
         parse.urlencode(url_params)
 
-    return query_url, image_url
+    return _query_url, _image_url
+
 
 doc = dominate.document(title='Jump to page')
 
