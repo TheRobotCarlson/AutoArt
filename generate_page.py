@@ -1,14 +1,26 @@
 import dominate
 from dominate.tags import *
 
+from urllib import parse
+
 base_url = "https://www.zazzle.com/api/create/"
 store_id = "at-238377813278186853"
-in_between_1 = "?ax=Linkover&"
-product_id = "pd=239612743668341078"
-in_between_2 = "&ed=true&ic=&t_image1_iid="
+
 image_url = "https://raw.githubusercontent.com/TheRobotCarlson/styled-images/master/test1_at_iteration_9.png"
 
-query_url = base_url + store_id + in_between_1 + product_id + in_between_2 + image_url
+url_params = {
+    "ax": "Linkover",
+    "pd": "239612743668341078",
+    "ed": "true",
+    "ic": "",
+    "t_image1_iid": image_url
+}
+
+query_url = \
+    base_url + \
+    store_id + \
+    "?" + \
+    parse.urlencode(url_params)
 
 print(query_url)
 
